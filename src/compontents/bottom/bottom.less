@@ -1,0 +1,32 @@
+.bottom-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  .bottom {
+    height: 60px;
+    background-color: #fff;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ccc;
+    .item {
+      &.active {
+        color: #ff8f00;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+      display: flex;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        margin-top: 3px;
+      }
+    }
+  }
+}

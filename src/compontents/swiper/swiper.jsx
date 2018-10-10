@@ -5,16 +5,18 @@ import 'swiper/dist/css/swiper.min.css'
 
 class Imglist extends React.Component {
   componentDidMount(){
-    var mySwiper = new Swiper('.swiper-container', {
+    var mySwiper = new Swiper('.swiper-container', { // eslint-disable-line no-unused-vars
       autoplay: true,//可选选项，自动滑动
-      loop:true
+      loop:true,
+      pagination: {
+        el: '.swiper-pagination',
+      }
     })
   }
   render () {
-    var swiperList = '';
+    var swiperList = '';// eslint-disable-line no-unused-vars
     var style = {
       height: '200px',
-      lineHeight: '200px',
       textAlign: 'center'
     };
     return (<div>
@@ -26,7 +28,9 @@ class Imglist extends React.Component {
             </div>)
           })}
         </div>
+        <div class="swiper-pagination"></div>
       </div>
+     
     </div>)
   }
 }

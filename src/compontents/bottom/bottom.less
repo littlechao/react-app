@@ -4,17 +4,19 @@
   bottom: 0;
   left: 0;
   .bottom {
-    height: 60px;
+    height: 48px;
     background-color: #fff;
     padding: 0 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #ccc;
-    .item {
-      &.active {
-        color: #ff8f00;
+    .active {
+      span {
+        color: #ffc400;
       }
+    }
+    .item > a {
       img {
         width: 20px;
         height: 20px;
@@ -25,6 +27,7 @@
       justify-content: space-between;
       align-items: center;
       span {
+        font-size: 12px;
         margin-top: 3px;
       }
     }

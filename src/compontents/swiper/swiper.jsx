@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import Swiper from 'swiper/dist/js/swiper.js'
 import 'swiper/dist/css/swiper.min.css'
@@ -28,11 +29,16 @@ class Imglist extends React.Component {
             </div>)
           })}
         </div>
-        <div class="swiper-pagination"></div>
+        <div className="swiper-pagination"></div>
       </div>
      
     </div>)
   }
 }
+
+Imglist.propTypes = {
+  arr:PropTypes.array.isRequired
+}
+
 
 export default Imglist

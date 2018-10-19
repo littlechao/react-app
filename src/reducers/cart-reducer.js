@@ -1,27 +1,23 @@
 // src/reducers/cart-reducer.js
 
-import  { ADD_TO_CART,UPDATE_CART,DELETE_FROM_CART }  from '../actions/cart-actions';
+import {
+  ADD_TO_CART,
+  UPDATE_CART,
+  DELETE_FROM_CART,
+  SEARCH_CART
+} from '../actions/cart-actions';
 
+let task = localStorage.getItem("localTask");
 const initialState = {
-  cart: [
-    {
-      title: "测试", 
-      time:"2018-10-10",
-      content:"测试内容",
-      done: false
-    },
-    {
-      title: "测试1", 
-      time:"2018-10-11",
-      content:"测试内容1",
-      done: false
-    }
-  ]
+  cart: task ? JSON.parse(task) : []
 }
 
 export default function(state=initialState, action) {
   switch (action.type) {
     case ADD_TO_CART: {
+      localStorage.setItem("localTask",JSON.stringify([
+        ...state.cart, action.payload
+      ]))
       return {
         ...state,
         cart: [...state.cart, action.payload]
@@ -30,24 +26,42 @@ export default function(state=initialState, action) {
 
     case UPDATE_CART: {
       return {
-        cart: state.cart.map(item => item.product === action.payload.product ? action.payload : item)
+        cart: state.cart.map((item) => {
+          if (item.title === action.payload.title) {
+            item.done = true;
+          }
+          return item;
+        })
       }
     }
 
-    case DELETE_FROM_CART: {
+    case SEARCH_CART: {
       return {
         ...state,
-        cart: state.cart.filter(item => item.product !== action.payload.product)
+        cart: state.cart.filter(item => item.title !== action.payload.title)
       }
     }
-
+    case DELETE_FROM_CART: {
+      localStorage.setItem("localTask",JSON.stringify(
+        state.cart.filter(item => item.title !== action.payload.title)
+      ))
+      return {
+        ...state,
+        cart: state.cart.filter(item => item.title !== action.payload.title)
+      }
+    }
     default:
       return state;
   }
 }
 
 
-
+// const fetchPosts = params => dispatch => {
+//   dispatch(requestPosts(params))
+//   return fetch(`https://www.reddit.com/r/${params}.json`)
+//     .then(response => response.json())
+//     .then(json => dispatch(receivePosts(params, json)))
+// }
 
 
 // export const ADD_TO_CART = 'ADD_TO_CART';
